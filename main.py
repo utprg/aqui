@@ -10,6 +10,8 @@ bot = discord.Bot(
         intents=discord.Intents.all(),  # 全てのインテンツを利用できるようにする
 )
 
+genchisignal="\N{WHITE LEFT POINTING BACKHAND INDEX}"
+
 #サイコロが動くフィールド(狙った数値が出るように数字なり記号は変換する必要あり)
 grid=[["6","%","2","x","9"],
       ["-","5","+","4","^"],
@@ -308,6 +310,12 @@ async def r(ctx: discord.ApplicationContext):
     r.reverse()
     letters=[chr(num+64) for num in r]
     await ctx.respond("".join(letters))
+
+@bot.event
+async def on_message(message):
+    if message.author.bot and message.content in ["OLD","KAITI","PHONE","SW"]:
+        global genchisignal
+        await message.add_reaction(genchisignal)
 
 # Botの起動とDiscordサーバーへの接続
 keep_alive()
