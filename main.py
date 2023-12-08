@@ -13,28 +13,43 @@ bot = discord.Bot(
 genchisignal="\N{WHITE LEFT POINTING BACKHAND INDEX}"
 
 #サイコロが動くフィールド(狙った数値が出るように数字なり記号は変換する必要あり)
-grid=[["6","%","2","x","9"],
-      ["-","5","+","4","^"],
-      ["8","x","1","+","7"],
-      ["%","2","+","3","-"],
-      ["4","-","9","^","2"]]
-cp=[2,2]
+grid=[["9","%","2","^","8","+","1","-","3","%","2","-"],
+      ["-","7","+","3","%","6","-","2","+","7","-","2"],
+      ["3","x","6","x","4","x","4","^","2","^","3","x"],
+      ["^","8","%","2","%","3","%","9","x","9","%","7"],
+      ["5","%","1","+","7","^","2","-","8","+","4","^"],
+      ["+","1","+","2","-","8","x","3","%","2","^","5"],
+      ["8","x","4","+","3","-","3","x","4","%","3","%"],
+      ["x","3","-","8","-","9","+","5","%","2","x","3"],
+      ["8","-","1","%","1","x","7","+","4","+","8","-"],
+      ["+","8","x","3","+","5","x","9","+","2","-","9"],
+      ["4","-","3","%","9","+","4","%","1","%","8","x"],
+      ["%","3","+","2","+","3","%","9","^","5","x","1"]]
+mode=0
+sps=[[10,2],[10,4],[8,4],[9,9],[7,7],[5,1]]
+dices=[[6,5,3,4,2,1],
+       [1,3,5,2,4,6],
+       [4,6,2,5,1,3],
+       [2,3,1,6,4,5],
+       [3,6,5,2,1,4],
+       [4,2,1,6,5,3]]
+cp=sps[mode%6]
 currentformula=[grid[cp[0]][cp[1]]]
-dice=[1,2,3,4,5,6]
+dice=dices[mode%6]
 currentformula.append(str(dice[0]))
 
 #上への移動
 @bot.command(name="up",description="UP")
 async def u(ctx: discord.ApplicationContext):
-    global grid,cp,currentformula,dice
+    global grid,cp,sps,currentformula,dice,dices,mode
     mirror_server_id=1178925484457861150
     mirror_channel_id=1178925484457861153
     mirrorserver=bot.get_guild(mirror_server_id)
     if cp[0]==0:
         await ctx.respond("reset")
-        cp=[2,2]
+        cp=sps[mode%6]
         currentformula=[grid[cp[0]][cp[1]]]
-        dice=[1,2,3,4,5,6]
+        dice=dices[mode%6]
         currentformula.append(str(dice[0]))
     else:
         cp[0]-=1
@@ -44,7 +59,7 @@ async def u(ctx: discord.ApplicationContext):
     if mirrorserver:
         mirrorchannel=mirrorserver.get_channel(mirror_channel_id)
         if mirrorchannel:
-            await mirrorchannel.send("".join(currentformula))
+            await mirrorchannel.send(mode%6,"".join(currentformula))
         else:
             print("channel not exist")
     else:
@@ -70,7 +85,7 @@ async def u(ctx: discord.ApplicationContext):
     if mirrorserver:
         mirrorchannel=mirrorserver.get_channel(mirror_channel_id)
         if mirrorchannel:
-            await mirrorchannel.send("".join(currentformula))
+            await mirrorchannel.send(mode%6,"".join(currentformula))
         else:
             print("channel not exist")
     else:
@@ -98,15 +113,15 @@ async def u(ctx: discord.ApplicationContext):
 #下への移動
 @bot.command(name="down",description="DOWN")
 async def d(ctx: discord.ApplicationContext):
-    global grid,cp,currentformula,dice
+    global grid,cp,sps,currentformula,dice,dices,mode
     mirror_server_id=1178925484457861150
     mirror_channel_id=1178925484457861153
     mirrorserver=bot.get_guild(mirror_server_id)
     if cp[0]==len(grid)-1:
         await ctx.respond("reset")
-        cp=[2,2]
+        cp=sps[mode%6]
         currentformula=[grid[cp[0]][cp[1]]]
-        dice=[1,2,3,4,5,6]
+        dice=dices[mode%6]
         currentformula.append(str(dice[0]))
     else:
         cp[0]+=1
@@ -116,7 +131,7 @@ async def d(ctx: discord.ApplicationContext):
     if mirrorserver:
         mirrorchannel=mirrorserver.get_channel(mirror_channel_id)
         if mirrorchannel:
-            await mirrorchannel.send("".join(currentformula))
+            await mirrorchannel.send(mode%6,"".join(currentformula))
         else:
             print("channel not exist")
     else:
@@ -142,7 +157,7 @@ async def d(ctx: discord.ApplicationContext):
     if mirrorserver:
         mirrorchannel=mirrorserver.get_channel(mirror_channel_id)
         if mirrorchannel:
-            await mirrorchannel.send("".join(currentformula))
+            await mirrorchannel.send(mode%6,"".join(currentformula))
         else:
             print("channel not exist")
     else:
@@ -170,15 +185,15 @@ async def d(ctx: discord.ApplicationContext):
 #左への移動
 @bot.command(name="left",description="LEFT")
 async def l(ctx: discord.ApplicationContext):
-    global grid,cp,currentformula,dice
+    global grid,cp,sps,currentformula,dice,dices,mode
     mirror_server_id=1178925484457861150
     mirror_channel_id=1178925484457861153
     mirrorserver=bot.get_guild(mirror_server_id)
     if cp[1]==0:
         await ctx.respond("reset")
-        cp=[2,2]
+        cp=sps[mode%6]
         currentformula=[grid[cp[0]][cp[1]]]
-        dice=[1,2,3,4,5,6]
+        dice=dices[mode%6]
         currentformula.append(str(dice[0]))
     else:
         cp[1]-=1
@@ -188,7 +203,7 @@ async def l(ctx: discord.ApplicationContext):
     if mirrorserver:
         mirrorchannel=mirrorserver.get_channel(mirror_channel_id)
         if mirrorchannel:
-            await mirrorchannel.send("".join(currentformula))
+            await mirrorchannel.send(mode%6,"".join(currentformula))
         else:
             print("channel not exist")
     else:
@@ -214,7 +229,7 @@ async def l(ctx: discord.ApplicationContext):
     if mirrorserver:
         mirrorchannel=mirrorserver.get_channel(mirror_channel_id)
         if mirrorchannel:
-            await mirrorchannel.send("".join(currentformula))
+            await mirrorchannel.send(mode%6,"".join(currentformula))
         else:
             print("channel not exist")
     else:
@@ -242,15 +257,15 @@ async def l(ctx: discord.ApplicationContext):
 #右への移動
 @bot.command(name="right",description="RIGHT")
 async def r(ctx: discord.ApplicationContext):
-    global grid,cp,currentformula,dice
+    global grid,cp,sps,currentformula,dice,dices,mode
     mirror_server_id=1178925484457861150
     mirror_channel_id=1178925484457861153
     mirrorserver=bot.get_guild(mirror_server_id)
     if cp[1]==len(grid)-1:
         await ctx.respond("reset")
-        cp=[2,2]
+        cp=sps[mode%6]
         currentformula=[grid[cp[0]][cp[1]]]
-        dice=[1,2,3,4,5,6]
+        dice=dices[mode%6]
         currentformula.append(str(dice[0]))
     else:
         cp[1]+=1
@@ -260,7 +275,7 @@ async def r(ctx: discord.ApplicationContext):
     if mirrorserver:
         mirrorchannel=mirrorserver.get_channel(mirror_channel_id)
         if mirrorchannel:
-            await mirrorchannel.send("".join(currentformula))
+            await mirrorchannel.send(mode%6,"".join(currentformula))
         else:
             print("channel not exist")
     else:
@@ -286,7 +301,7 @@ async def r(ctx: discord.ApplicationContext):
     if mirrorserver:
         mirrorchannel=mirrorserver.get_channel(mirror_channel_id)
         if mirrorchannel:
-            await mirrorchannel.send("".join(currentformula))
+            await mirrorchannel.send(mode%6,"".join(currentformula))
         else:
             print("channel not exist")
     else:
@@ -313,9 +328,12 @@ async def r(ctx: discord.ApplicationContext):
 
 @bot.event
 async def on_message(message):
-    if message.author.bot and message.content in ["OLD","KAITI","PHONE","SW"]:
+    global mode
+    hints=["TAKARA","NATIONAL","PHONE","SOUTHWEST","MATUMOTO","KAICHI"]
+    if message.author.bot and message.content==hints[mode%6]:
         global genchisignal
         await message.add_reaction(genchisignal)
+        mode+=1
 
 # Botの起動とDiscordサーバーへの接続
 keep_alive()
