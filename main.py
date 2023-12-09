@@ -59,7 +59,7 @@ async def u(ctx: discord.ApplicationContext):
     if mirrorserver:
         mirrorchannel=mirrorserver.get_channel(mirror_channel_id)
         if mirrorchannel:
-            await mirrorchannel.send(mode%6,"".join(currentformula))
+            await mirrorchannel.send("".join(currentformula))
         else:
             print("channel not exist")
     else:
@@ -85,7 +85,7 @@ async def u(ctx: discord.ApplicationContext):
     if mirrorserver:
         mirrorchannel=mirrorserver.get_channel(mirror_channel_id)
         if mirrorchannel:
-            await mirrorchannel.send(mode%6,"".join(currentformula))
+            await mirrorchannel.send("".join(currentformula))
         else:
             print("channel not exist")
     else:
@@ -131,7 +131,7 @@ async def d(ctx: discord.ApplicationContext):
     if mirrorserver:
         mirrorchannel=mirrorserver.get_channel(mirror_channel_id)
         if mirrorchannel:
-            await mirrorchannel.send(mode%6,"".join(currentformula))
+            await mirrorchannel.send("".join(currentformula))
         else:
             print("channel not exist")
     else:
@@ -157,7 +157,7 @@ async def d(ctx: discord.ApplicationContext):
     if mirrorserver:
         mirrorchannel=mirrorserver.get_channel(mirror_channel_id)
         if mirrorchannel:
-            await mirrorchannel.send(mode%6,"".join(currentformula))
+            await mirrorchannel.send("".join(currentformula))
         else:
             print("channel not exist")
     else:
@@ -203,7 +203,7 @@ async def l(ctx: discord.ApplicationContext):
     if mirrorserver:
         mirrorchannel=mirrorserver.get_channel(mirror_channel_id)
         if mirrorchannel:
-            await mirrorchannel.send(mode%6,"".join(currentformula))
+            await mirrorchannel.send("".join(currentformula))
         else:
             print("channel not exist")
     else:
@@ -229,7 +229,7 @@ async def l(ctx: discord.ApplicationContext):
     if mirrorserver:
         mirrorchannel=mirrorserver.get_channel(mirror_channel_id)
         if mirrorchannel:
-            await mirrorchannel.send(mode%6,"".join(currentformula))
+            await mirrorchannel.send("".join(currentformula))
         else:
             print("channel not exist")
     else:
@@ -275,7 +275,7 @@ async def r(ctx: discord.ApplicationContext):
     if mirrorserver:
         mirrorchannel=mirrorserver.get_channel(mirror_channel_id)
         if mirrorchannel:
-            await mirrorchannel.send(mode%6,"".join(currentformula))
+            await mirrorchannel.send("".join(currentformula))
         else:
             print("channel not exist")
     else:
@@ -301,7 +301,7 @@ async def r(ctx: discord.ApplicationContext):
     if mirrorserver:
         mirrorchannel=mirrorserver.get_channel(mirror_channel_id)
         if mirrorchannel:
-            await mirrorchannel.send(mode%6,"".join(currentformula))
+            await mirrorchannel.send("".join(currentformula))
         else:
             print("channel not exist")
     else:
