@@ -328,7 +328,7 @@ async def r(ctx: discord.ApplicationContext):
 
 @bot.event
 async def on_message(message):
-    global mode,cp,dice
+    global mode,cp,dice,currentformula
     hints=["TAKARA","NATIONAL","PHONE","SOUTHWEST","MATUMOTO","KAICHI"]
     if message.author.bot and message.content==hints[mode%6]:
         global genchisignal
@@ -336,6 +336,8 @@ async def on_message(message):
         mode+=1
         cp=sps[mode%6]
         dice=dices[mode%6]
+        currentformula=[grid[cp[0]][cp[1]]]
+        currentformula.append(str(dice[0]))
         await message.reply("現地ヒントを確認。モードを変更します")
 
 # Botの起動とDiscordサーバーへの接続
