@@ -26,16 +26,16 @@ grid=[["9","%","2","^","8","+","1","-","3","%","2","-"],
       ["4","-","3","%","9","+","4","%","1","%","8","x"],
       ["%","3","+","2","+","3","%","9","^","5","x","1"]]
 mode=0
-sps=[[10,2],[10,4],[8,4],[9,9],[7,7],[5,1]]
-dices=[[6,5,3,4,2,1],
-       [1,3,5,2,4,6],
-       [4,6,2,5,1,3],
-       [2,3,1,6,4,5],
-       [3,6,5,2,1,4],
-       [4,2,1,6,5,3]]
-cp=sps[mode%6]
+sps=[(10,2),(10,4),(8,4),(9,9),(7,7),(5,1)]
+dices=[(6,5,3,4,2,1),
+       (1,3,5,2,4,6),
+       (4,6,2,5,1,3),
+       (2,3,1,6,4,5),
+       (3,6,5,2,1,4),
+       (4,2,1,6,5,3)]
+cp=list(sps[mode%6])
 currentformula=[grid[cp[0]][cp[1]]]
-dice=dices[mode%6]
+dice=list(dices[mode%6])
 currentformula.append(str(dice[0]))
 
 #上への移動
@@ -47,9 +47,9 @@ async def u(ctx: discord.ApplicationContext):
     mirrorserver=bot.get_guild(mirror_server_id)
     if cp[0]==0:
         await ctx.respond("reset")
-        cp=sps[mode%6]
+        cp=list(sps[mode%6])
         currentformula=[grid[cp[0]][cp[1]]]
-        dice=dices[mode%6]
+        dice=list(dices[mode%6])
         currentformula.append(str(dice[0]))
     else:
         cp[0]-=1
@@ -119,9 +119,9 @@ async def d(ctx: discord.ApplicationContext):
     mirrorserver=bot.get_guild(mirror_server_id)
     if cp[0]==len(grid)-1:
         await ctx.respond("reset")
-        cp=sps[mode%6]
+        cp=list(sps[mode%6])
         currentformula=[grid[cp[0]][cp[1]]]
-        dice=dices[mode%6]
+        dice=list(dices[mode%6])
         currentformula.append(str(dice[0]))
     else:
         cp[0]+=1
@@ -191,9 +191,9 @@ async def l(ctx: discord.ApplicationContext):
     mirrorserver=bot.get_guild(mirror_server_id)
     if cp[1]==0:
         await ctx.respond("reset")
-        cp=sps[mode%6]
+        cp=list(sps[mode%6])
         currentformula=[grid[cp[0]][cp[1]]]
-        dice=dices[mode%6]
+        dice=list(dices[mode%6])
         currentformula.append(str(dice[0]))
     else:
         cp[1]-=1
@@ -263,9 +263,9 @@ async def r(ctx: discord.ApplicationContext):
     mirrorserver=bot.get_guild(mirror_server_id)
     if cp[1]==len(grid)-1:
         await ctx.respond("reset")
-        cp=sps[mode%6]
+        cp=list(sps[mode%6])
         currentformula=[grid[cp[0]][cp[1]]]
-        dice=dices[mode%6]
+        dice=list(dices[mode%6])
         currentformula.append(str(dice[0]))
     else:
         cp[1]+=1
@@ -334,8 +334,8 @@ async def on_message(message):
         global genchisignal
         await message.add_reaction(genchisignal)
         mode+=1
-        cp=sps[mode%6]
-        dice=dices[mode%6]
+        cp=list(sps[mode%6])
+        dice=list(dices[mode%6])
         currentformula=[grid[cp[0]][cp[1]]]
         currentformula.append(str(dice[0]))
         await message.reply("現地ヒントを確認。モードを変更します")
