@@ -328,12 +328,15 @@ async def r(ctx: discord.ApplicationContext):
 
 @bot.event
 async def on_message(message):
-    global mode
+    global mode,cp,dice
     hints=["TAKARA","NATIONAL","PHONE","SOUTHWEST","MATUMOTO","KAICHI"]
     if message.author.bot and message.content==hints[mode%6]:
         global genchisignal
         await message.add_reaction(genchisignal)
         mode+=1
+        cp=sps[mode%6]
+        dice=dices[mode%6]
+        await message.reply("現地ヒントを確認。モードを変更します")
 
 # Botの起動とDiscordサーバーへの接続
 keep_alive()
