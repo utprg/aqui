@@ -91,24 +91,27 @@ async def u(ctx: discord.ApplicationContext):
     else:
         print("server not exist")
     num=int(currentformula[0])
-    r=[]
-    r.append(num%26)
-    q=num//26
-    while q!=0:
-        r.append(q%26)
-        q=q//26
-    for i in range(len(r)-1):
-        if r[i]==0:
-            r[i]=26
-            r[i+1]=r[i+1]-1
-        if r[i]==-1:
-            r[i]=25
-            r[i+1]=r[i+1]-1
-    if r[-1]<=0:
-        del r[-1]
-    r.reverse()
-    letters=[chr(num+64) for num in r]
-    await ctx.respond("".join(letters))
+    if num==0:
+        await ctx.respond("Null")
+    else:
+        r=[]
+        r.append(num%26)
+        q=num//26
+        while q!=0:
+            r.append(q%26)
+            q=q//26
+        for i in range(len(r)-1):
+            if r[i]==0:
+                r[i]=26
+                r[i+1]=r[i+1]-1
+            if r[i]==-1:
+                r[i]=25
+                r[i+1]=r[i+1]-1
+        if r[-1]<=0:
+            del r[-1]
+        r.reverse()
+        letters=[chr(num+64) for num in r]
+        await ctx.respond("".join(letters))
 
 #下への移動
 @bot.command(name="down",description="DOWN")
@@ -163,24 +166,27 @@ async def d(ctx: discord.ApplicationContext):
     else:
         print("server not exist")
     num=int(currentformula[0])
-    r=[]
-    r.append(num%26)
-    q=num//26
-    while q!=0:
-        r.append(q%26)
-        q=q//26
-    for i in range(len(r)-1):
-        if r[i]==0:
-            r[i]=26
-            r[i+1]=r[i+1]-1
-        if r[i]==-1:
-            r[i]=25
-            r[i+1]=r[i+1]-1
-    if r[-1]<=0:
-        del r[-1]
-    r.reverse()
-    letters=[chr(num+64) for num in r]
-    await ctx.respond("".join(letters))
+    if num==0:
+        await ctx.respond("Null")
+    else:
+        r=[]
+        r.append(num%26)
+        q=num//26
+        while q!=0:
+            r.append(q%26)
+            q=q//26
+        for i in range(len(r)-1):
+            if r[i]==0:
+                r[i]=26
+                r[i+1]=r[i+1]-1
+            if r[i]==-1:
+                r[i]=25
+                r[i+1]=r[i+1]-1
+        if r[-1]<=0:
+            del r[-1]
+        r.reverse()
+        letters=[chr(num+64) for num in r]
+        await ctx.respond("".join(letters))
 
 #左への移動
 @bot.command(name="left",description="LEFT")
@@ -235,24 +241,27 @@ async def l(ctx: discord.ApplicationContext):
     else:
         print("server not exist")
     num=int(currentformula[0])
-    r=[]
-    r.append(num%26)
-    q=num//26
-    while q!=0:
-        r.append(q%26)
-        q=q//26
-    for i in range(len(r)-1):
-        if r[i]==0:
-            r[i]=26
-            r[i+1]=r[i+1]-1
-        if r[i]==-1:
-            r[i]=25
-            r[i+1]=r[i+1]-1
-    if r[-1]<=0:
-        del r[-1]
-    r.reverse()
-    letters=[chr(num+64) for num in r]
-    await ctx.respond("".join(letters))
+    if num==0:
+        await ctx.respond("Null")
+    else:
+        r=[]
+        r.append(num%26)
+        q=num//26
+        while q!=0:
+            r.append(q%26)
+            q=q//26
+        for i in range(len(r)-1):
+            if r[i]==0:
+                r[i]=26
+                r[i+1]=r[i+1]-1
+            if r[i]==-1:
+                r[i]=25
+                r[i+1]=r[i+1]-1
+        if r[-1]<=0:
+            del r[-1]
+        r.reverse()
+        letters=[chr(num+64) for num in r]
+        await ctx.respond("".join(letters))
 
 #右への移動
 @bot.command(name="right",description="RIGHT")
@@ -307,24 +316,27 @@ async def r(ctx: discord.ApplicationContext):
     else:
         print("server not exist")
     num=int(currentformula[0])
-    r=[]
-    r.append(num%26)
-    q=num//26
-    while q!=0:
-        r.append(q%26)
-        q=q//26
-    for i in range(len(r)-1):
-        if r[i]==0:
-            r[i]=26
-            r[i+1]=r[i+1]-1
-        if r[i]==-1:
-            r[i]=25
-            r[i+1]=r[i+1]-1
-    if r[-1]<=0:
-        del r[-1]
-    r.reverse()
-    letters=[chr(num+64) for num in r]
-    await ctx.respond("".join(letters))
+    if num==0:
+        await ctx.respond("Null")
+    else:
+        r=[]
+        r.append(num%26)
+        q=num//26
+        while q!=0:
+            r.append(q%26)
+            q=q//26
+        for i in range(len(r)-1):
+            if r[i]==0:
+                r[i]=26
+                r[i+1]=r[i+1]-1
+            if r[i]==-1:
+                r[i]=25
+                r[i+1]=r[i+1]-1
+        if r[-1]<=0:
+            del r[-1]
+        r.reverse()
+        letters=[chr(num+64) for num in r]
+        await ctx.respond("".join(letters))
 
 @bot.event
 async def on_message(message):
