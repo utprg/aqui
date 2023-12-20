@@ -376,7 +376,7 @@ async def on_message(message):
         dice=list(dices[mode%6])
         currentformula=[grid[cp[0]][cp[1]]]
         currentformula.append(str(dice[0]))
-        await message.reply("正解！ 現地ヒントを開示します")
+        await message.reply("正解！ 現地ヒントを開示、モードを変更します")
         await message.reply(hints[mode%6])
 
 # Botの起動とDiscordサーバーへの接続
