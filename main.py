@@ -364,7 +364,7 @@ async def r(ctx: discord.ApplicationContext):
 
 @bot.event
 async def on_message(message):
-    global mode,cp,dice,currentformula
+    global mode,cp,dice,currentformula,grid
     answers=["ATGT","PIZZA","PUSAN","SEBAN","WINTER","RITOU"]
     hints=["TAKARA","NATIONAL","PHONE","SOUTHWEST","MATUMOTO","KAICHI"]
     if message.author.bot and message.content==answers[mode%6]:
