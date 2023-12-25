@@ -366,18 +366,18 @@ async def r(ctx: discord.ApplicationContext):
 async def on_message(message):
     global mode,cp,dice,currentformula,grid
     answers=["ATGT","PIZZA","PUSAN","SEBAN","WINTER","RITOU"]
-    hints=["TAKARA","NATIONAL","PHONE","SOUTHWEST","MATUMOTO","KAICHI"]
+    hints=["TAKARA","NATIONAL","PHONE","SOUTHWEST","MATSUMOTO","KAICHI"]
     if message.author.bot and message.content==answers[mode%6]:
         global genchisignal
         await message.add_reaction(genchisignal)
+        await message.reply("正解！ 現地ヒントを開示、モードを変更します")
+        await message.reply(hints[mode%6])
         mode+=1
         grid=grids[mode%6]
         cp=list(sps[mode%6])
         dice=list(dices[mode%6])
         currentformula=[grid[cp[0]][cp[1]]]
         currentformula.append(str(dice[0]))
-        await message.reply("正解！ 現地ヒントを開示、モードを変更します")
-        await message.reply(hints[mode%6])
 
 # Botの起動とDiscordサーバーへの接続
 keep_alive()
